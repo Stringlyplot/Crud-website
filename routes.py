@@ -8,7 +8,9 @@ def index():
 
 @app.route('/data')
 def data():
-    return render_template('data.html')
+    reviews = MovieReview.query.order_by(MovieReview.time_created.desc()).all()
+    return render_template('data.html', reviews=reviews)
+
 
 @app.route('/add_review', methods=['GET', 'POST'])
 def add_review():
