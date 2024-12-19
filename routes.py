@@ -27,3 +27,16 @@ def add_review():
         return redirect(url_for('index'))
     
     return render_template('add_review.html')
+@app.route('/edit_review/<int:review_id>', methods=['GET', 'POST'])
+def edit_review(review_id):
+    review = MovieReview.query.get_or_404(review_id)
+    
+    if request.method == 'POST':
+        review.movie_name = request.form['movie_name']
+        review.review = request.form['review']
+        review.rating = float(request.form['rating'])
+        
+        db.session.commit()
+        return redirect(url_for('data'))
+    
+    return render_template('edit_review.html', review=review)

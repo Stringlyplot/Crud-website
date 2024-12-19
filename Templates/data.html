@@ -24,6 +24,7 @@
                             <th scope="col">Review</th>
                             <th scope="col">Rating</th>
                             <th scope="col">Date Added</th>
+                            <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,9 @@
                             <td>{{ review.review }}</td>
                             <td>{{ review.rating }}/5</td>
                             <td>{{ review.time_created.strftime('%Y-%m-%d %H:%M') }}</td>
+                            <td>
+                                <a href="{{ url_for('edit_review', review_id=review.id) }}" class="btn btn-sm btn-primary">Edit</a>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
